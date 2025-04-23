@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Ejercicio3 {
 	public static void main(String[] args) {
+		System.out.println("Probando git");
 		Scanner s = new Scanner(System.in);
 		String nombre, apellido, facultad, direccion;
 		int comision, catedra;
