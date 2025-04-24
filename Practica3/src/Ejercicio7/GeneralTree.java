@@ -1,4 +1,4 @@
-package Ejercicio3;
+package Ejercicio7;
 
 import java.util.*;
 
@@ -128,5 +128,37 @@ public class GeneralTree<T> {
 			}
 		}
 		return max;
+	}
+	
+	private GeneralTree<T> buscarNodo(GeneralTree<T> arbol, T a) {
+		Queue<GeneralTree<T>> queue = new Queue<GeneralTree<T>>();
+		queue.enqueue(arbol);
+		while (!queue.isEmpty()) {
+			GeneralTree<T> act = queue.dequeue();
+			if (act.getData().equals(a)) {
+				return act;
+			}
+			if (act.hasChildren()) {
+				List<GeneralTree<T>> hijo = act.getHijo();
+				for (GeneralTree<T> i : hijo) {
+					queue.enqueue(i);
+				}
+			}
+		}
+		return null;
+	}
+	
+	public boolean esAncestro(T a, T b) {
+		boolean estado = false;
+		if (!this.isEmpty()) {
+			GeneralTree<T> nodoA = buscarNodo(this, a);
+			if (nodoA != null ) {
+				GeneralTree<T> nodoB = buscarNodo(nodoA, b);
+				if (nodoB != null) {
+					estado = true;
+				}
+			}	
+		}
+		return estado;
 	}
 }
